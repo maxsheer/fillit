@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 22:54:06 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/15 21:48:16 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/18 18:51:48 by wclayton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	get_next_line(t_ci fd, char **rs)
 	LUPA((*rs = ft_strnew(1)));
 	PUPA(findcur(&lst, fd, &cur));
 	
-	while ((rd = read(fd, buf, BUFF_SIZE)) && !ft_strchr(cur->content, '\n'))
+	while ((rd = read(fd, buf, BUFF_SIZE)))
 	{
 		PUPA(rd);
 		buf[rd] = 0;
@@ -90,8 +90,10 @@ int	get_next_line(t_ci fd, char **rs)
 		cur->content = ft_strjoin(cur->content, buf);
 		free(tmp);
 		LUPA(cur->content);
+		if (ft_strchr(buf, '\n'))
+			break;
 	}
-	if (((char*)(cur->content))[0] == 0 && rd < BUFF_SIZE)
+	if (ft_strlen(cur->content) == 0 && rd < BUFF_SIZE)
 		return (0);
 	return (stringf(&cur, rs));
 }
