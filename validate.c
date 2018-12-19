@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 21:11:28 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/18 20:56:33 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/19 20:30:52 by wclayton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ int	validate(int fd)
 	t_uc st[36];
 	size_t j;
 
+
 	i = -1;
 	while(++i < 36)
 		st[i] = 0;
 	cell_count = -1;
+	g_glob.store = (t_uc**)malloc(sizeof(t_uc*) * 26);
 	while (++cell_count < 26)
 	{
 		i = -1;
@@ -86,6 +88,17 @@ int	validate(int fd)
 				exit(0);
 			}
 			break;
+		}
+		j = 6;
+		i = 0;
+		g_glob.store[cell_count] = (t_uc*)malloc(sizeof(t_uc) * 16);
+		while(++j < 29)
+		{
+			if (j % 6 > 0 && j % 6 < 5)
+			{
+				g_glob.store[cell_count][i] = st[j];
+				i++;
+			}
 		}
 	}
 	return (1);
