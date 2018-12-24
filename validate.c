@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 21:11:28 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/24 20:56:36 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/25 00:39:24 by wclayton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ int	validate(int fd)
 	while(++i < 36)
 		st[i] = 0;
 	cell_count = -1;
-	g_glob.store = (t_uc**)malloc(sizeof(t_uc*) * 26);
+	g_glob = (t_huyna*)malloc(sizeof(t_huyna) * 28);
 	while (++cell_count < 26)
 	{
+		printf("inter\n");
 		i = -1;
 		while (++i < 4)
 		{
@@ -72,6 +73,24 @@ int	validate(int fd)
 				}
 			}
 		}
+		j = 6;
+		i = -1;
+		g_glob[cell_count].store = (t_uc*)malloc(sizeof(t_uc) * 16);
+		while (++i < 16)
+			g_glob[cell_count].store[i] = 0;
+		g_glob[cell_count].letter = cell_count + 'A';
+		g_glob[cell_count].X = 0;
+		g_glob[cell_count].Y = 0;
+		i = 0;
+		while(++j < 29)
+		{
+			if (j % 6 > 0 && j % 6 < 5)
+			{
+				g_glob[cell_count].store[i] = st[j];
+				if (g_glob.)
+				i++;
+			}
+		}
 		if (get_next_line(fd, &nl) > 0)
 		{
 			if (ft_strlen(nl) != 0 || !vallinks(st))
@@ -88,17 +107,6 @@ int	validate(int fd)
 				exit(0);
 			}
 			break;
-		}
-		j = 6;
-		i = 0;
-		g_glob.store[cell_count] = (t_uc*)malloc(sizeof(t_uc) * 16);
-		while(++j < 29)
-		{
-			if (j % 6 > 0 && j % 6 < 5)
-			{
-				g_glob.store[cell_count][i] = st[j];
-				i++;
-			}
 		}
 	}
 	return (1);
