@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:43:38 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/19 22:53:53 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/24 23:01:10 by wclayton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,15 @@ typedef unsigned short t_uz;
 
 typedef struct	t_a
 {
-				t_uc **store;
+				t_uc	*store;
+				t_uz	X;
+				t_uz	Y;
+				t_uc	letter;
+				t_uz	width;
+				t_uz	height;
 }				t_huyna;
 
-t_huyna g_glob;
+t_huyna g_glob[28];
 
 int	usage(void);
 int validate(int fd);
