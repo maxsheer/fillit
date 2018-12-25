@@ -1,44 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hw.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/10 20:41:03 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/25 22:48:38 by wclayton         ###   ########.fr       */
+/*   Created: 2018/12/25 22:20:15 by wclayton          #+#    #+#             */
+/*   Updated: 2018/12/25 22:47:34 by wclayton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-int	main(int argc, char **argv)
+void hw(void)
 {
-	int fd;
 	int i;
 	int j;
+	int k;
+	int maxw;
+	int maxh;
 
-	if (argc != 2 || ((fd = open(argv[1], O_RDONLY)) < 0))
-		return (usage());
-	if (!validate(fd))
-	{
-		write(2, "error\n", 6);
-		return (0);
-	}
 	i = -1;
-	cut();
-	hw();
-	while (++i < 3)
+	maxw = 0;
+	maxh = 0;
+	while (++i < 26)
 	{
-		j = -1;
-		while (++j < 16)
+		if (g_glob[i].store)
 		{
-			if (j % 4 == 0)
-				printf("\n");
-			printf("%d", g_glob[i].store[j / 4][j % 4]);
+			j = -1;
+			while (++j < 4)
+			{
+				k = -1;
+				while (++k < 4)
+				{
+					if (g_glob[i].store[j][k] == 1)
+					{
+						if (j > maxh)
+							maxh = j;
+						if (k > maxw)
+							maxw = k;
+					}
+				}
+			}
 		}
-		printf("\n");
 	}
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 21:11:28 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/25 21:11:59 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/25 22:20:03 by wclayton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	validate(int fd)
 	g_glob = (t_huyna*)malloc(sizeof(t_huyna) * 28);
 	while (++cell_count < 26)
 	{
-		printf("inter\n");
 		i = -1;
 		while (++i < 4)
 		{

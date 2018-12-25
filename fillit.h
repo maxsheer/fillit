@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:43:38 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/25 21:12:03 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/25 22:48:36 by wclayton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ t_huyna *g_glob;
 int	usage(void);
 int validate(int fd);
 void cut(void);
+void hw(void);
 #endif
