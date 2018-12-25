@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 22:20:15 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/25 22:47:34 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/25 23:16:26 by dgrady           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,8 @@ void hw(void)
 	int i;
 	int j;
 	int k;
-	int maxw;
-	int maxh;
 
 	i = -1;
-	maxw = 0;
-	maxh = 0;
 	while (++i < 26)
 	{
 		if (g_glob[i].store)
@@ -36,10 +32,10 @@ void hw(void)
 				{
 					if (g_glob[i].store[j][k] == 1)
 					{
-						if (j > maxh)
-							maxh = j;
-						if (k > maxw)
-							maxw = k;
+						if (j >= g_glob[i].height)
+							g_glob[i].height = j + 1;
+						if (k >= g_glob[i].width)
+							g_glob[i].width = k + 1;
 					}
 				}
 			}

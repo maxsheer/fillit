@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:43:38 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/25 22:48:36 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/25 23:23:21 by dgrady           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ typedef struct	t_a
 }				t_huyna;
 
 t_huyna *g_glob;
+short	cell_count;
 
 int	usage(void);
 int validate(int fd);
 void cut(void);
 void hw(void);
+int	algo(short size);
+void print_solution(char	**map, short size);
+char	**create_map(void);
+int	find_size(short	cell_count);
 #endif

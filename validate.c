@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 21:11:28 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/25 22:20:03 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/25 23:16:58 by dgrady           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int vallinks(t_uc *st)
 int	validate(int fd)
 {
 	size_t i;
-	short cell_count;
 	char *nl;
 	t_uc st[36];
 	size_t j;
@@ -81,6 +80,8 @@ int	validate(int fd)
 		g_glob[cell_count].letter = cell_count + 'A';
 		g_glob[cell_count].X = 0;
 		g_glob[cell_count].Y = 0;
+		g_glob[cell_count].height = 0;
+		g_glob[cell_count].width = 0;
 		i = 0;
 		while(++j < 29)
 		{
