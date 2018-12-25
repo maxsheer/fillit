@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 20:42:04 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/25 00:39:36 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/25 21:11:27 by wclayton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	rfour(int i)
 	j = -1;
 	while(++j < 4)
 	{
-		if (g_glob[i].store[j * 4] == 1)
+		if (g_glob[i].store[j][0] == 1)
 			return (0);
 	}
 	j = -1;
@@ -27,8 +27,8 @@ int	rfour(int i)
 	{
 		if (j % 4 < 3)
 		{
-			g_glob[i].store[j] = g_glob[i].store[j + 1];
-			g_glob[i].store[j + 1] = 0;
+			g_glob[i].store[j / 4][j % 4] = g_glob[i].store[j / 4][j % 4 + 1];
+			g_glob[i].store[j / 4][j % 4 + 1] = 0;
 		}
 	}
 	return (1);
@@ -41,14 +41,14 @@ int cfour(int i)
 	j = -1;
 	while (++j < 4)
 	{
-		if (g_glob[i].store[j] == 1)
+		if (g_glob[i].store[0][j] == 1)
 			return (0);
 	}
 	j = -1;
 	while (++j < 12)
 	{
-		g_glob[i].store[j] = g_glob[i].store[j + 4];
-		g_glob[i].store[j + 4] = 0;
+		g_glob[i].store[j / 4][j % 4] = g_glob[i].store[j / 4 + 1][j % 4];
+		g_glob[i].store[j / 4 + 1][j % 4] = 0;
 	}
 	return (1);
 }

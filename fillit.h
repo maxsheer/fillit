@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:43:38 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/24 23:47:08 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/25 21:12:03 by wclayton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef unsigned short t_uz;
 
 typedef struct	t_a
 {
-				t_uc	*store;
+				t_uc	**store;
 				t_uz	X;
 				t_uz	Y;
 				t_uc	letter;
