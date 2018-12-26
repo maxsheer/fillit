@@ -6,55 +6,52 @@
 /*   By: dgrady <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 22:04:19 by dgrady            #+#    #+#             */
-/*   Updated: 2018/12/26 21:46:40 by dgrady           ###   ########.fr       */
+/*   Updated: 2018/12/27 01:59:47 by dgrady           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "fillit.h"
 
 void	print_solution(char **map, short size)
 {
 	int i;
 	int j;
-	
+
 	i = -1;
-	while(++i < size + 1)
+	while (++i < size)
 	{
 		j = -1;
-		while(++j < size + 1)
+		while (++j < size)
 		{
 			if (map[i][j] == 0)
-				printf("0");
+				ft_putchar('.');
 			else
-				printf("%c", map[i][j]);
+				ft_putchar(map[i][j]);
 		}
-		printf ("\n");
+		ft_putchar('\n');
 	}
 }
 
-char	**create_map()
+char	**create_map(void)
 {
 	char	**map;
-	int i;
+	int		i;
 
 	i = -1;
 	map = (char**)malloc(sizeof(char*) * 18);
-	while(++i < 18)
+	while (++i < 18)
 		map[i] = ft_strnew(18);
 	return (map);
 }
 
-/*
-int		find_size(short cell_count)
+int		find_size(short g_cell_count)
 {
 	int kek;
 	int size;
-	size = 1;
 
-	kek = cell_count + 1;
+	size = 1;
+	kek = g_cell_count + 1;
 	while (size * size < kek * 4)
-				size++;
+		size++;
 	return (size);
 }
-*/
