@@ -6,14 +6,14 @@
 /*   By: dgrady <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 20:46:51 by dgrady            #+#    #+#             */
-/*   Updated: 2018/12/25 23:28:46 by dgrady           ###   ########.fr       */
+/*   Updated: 2018/12/26 21:53:40 by dgrady           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "fillit.h"
 
-int		check(t_huyna tetr, char **map)
+int		check(t_huyna tetr, char **map, short size)
 {
 	int i;
 	int j;
@@ -23,9 +23,13 @@ int		check(t_huyna tetr, char **map)
 	{
 		j = -1;
 		while (++j < tetr.width)
+		{
+			if (tetr.X + j >= size || tetr.Y + i >= size)
+				return (0);
 			if (tetr.store[i][j] == 1)
-				if(map[tetr.X + j][tetr.Y + i] != 0)
+				if(map[tetr.Y + i][tetr.X + j] != 0)
 					return (0);
+		}
 	}
 	return 1;
 }
@@ -41,7 +45,8 @@ void	place(t_huyna tetr, char **map)
 	{
 		j = -1;
 		while (++j < tetr.width)
-			map[tetr.X + j][tetr.Y + i] = tetr.letter;
+			if (tetr.store[i][j] == 1)
+				map[tetr.Y + i][tetr.X + j] = tetr.letter;
 	}
 }
 
@@ -55,8 +60,8 @@ void	clear(t_huyna	tetr, char **map)
 	{
 		j = -1;
 		while (++j < tetr.width)
-			if (map[tetr.X + j][tetr.Y + i] == tetr.letter)
-				map[tetr.X + j][tetr.Y + i] = 0;
+			if (map[tetr.Y + i][tetr.X + j] == tetr.letter)
+				map[tetr.Y + i][tetr.X + j] = 0;
 	}
 }
 
@@ -69,12 +74,11 @@ int		algo(short	size)
 	index = 0;
 	while (1)
 	{
-		printf("sosi");
-		if (check(g_glob[index], map))
+		if (check(g_glob[index], map, size))
 		{
 			place(g_glob[index], map);
 			index++;
-			if (index == cell_count)
+			if (index == cell_count + 1)
 			{
 				print_solution(map, size);
 				return (1);
@@ -96,6 +100,7 @@ int		algo(short	size)
 				index--;
 				if (index == -1)
 				{
+					clear(g_glob[index], map);
 					size++;
 					index = 0;
 					continue ;
@@ -106,5 +111,6 @@ int		algo(short	size)
 		}
 		if(size == 17)
 			return (0);
+			
 	}
 }
