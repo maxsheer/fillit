@@ -6,19 +6,18 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 22:20:15 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/27 02:00:29 by dgrady           ###   ########.fr       */
+/*   Updated: 2018/12/28 20:22:45 by wclayton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-static int g_i = -1;
 
 void	hw(void)
 {
 	int j;
 	int k;
 
+	g_i = -1;
 	while (++g_i < 26)
 	{
 		if (g_glob[g_i].store)

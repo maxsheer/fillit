@@ -6,13 +6,13 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 21:11:28 by wclayton          #+#    #+#             */
-/*   Updated: 2018/12/27 03:12:02 by wclayton         ###   ########.fr       */
+/*   Updated: 2018/12/28 20:45:02 by wclayton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		val(t_uc *st)
+int		val(void)
 {
 	short	lc;
 	int		i;
@@ -23,10 +23,10 @@ int		val(t_uc *st)
 	sc = 0;
 	while (++i < 29)
 	{
-		if (st[i] == 1)
+		if (g_st[i] == 1)
 		{
-			sc += st[i];
-			lc += st[i - 1] + st[i + 1] + st[i - 6] + st[i + 6];
+			sc += g_st[i];
+			lc += g_st[i - 1] + g_st[i + 1] + g_st[i - 6] + g_st[i + 6];
 		}
 	}
 	if (sc != 4 || lc < 6)
@@ -52,18 +52,18 @@ void	globin(void)
 	g_glob[g_cell_count].width = 0;
 }
 
-void	fict1(t_uc *st)
+void	fict1(void)
 {
 	int i;
 	int j;
 
 	i = 0;
-	j = 16;
+	j = 6;
 	while (++j < 29)
 	{
 		if (j % 6 > 0 && j % 6 < 5)
 		{
-			g_glob[g_cell_count].store[i / 4][i % 4] = st[j];
+			g_glob[g_cell_count].store[i / 4][i % 4] = g_st[j];
 			i++;
 		}
 	}
@@ -83,37 +83,37 @@ void	fict2(int fd, char **nl)
 		while (++j < 4)
 		{
 			if ((*nl)[j] == '#')
-				st[6 * (i + 1) + 1 + j] = 1;
-			else if (nl[j] == '.')
-				st[6 * (i + 1) + 1 + j] = 0;
+				g_st[6 * (i + 1) + 1 + j] = 1;
+			else if ((*nl)[j] == '.')
+				g_st[6 * (i + 1) + 1 + j] = 0;
 			else
 				error();
 		}
 	}
 }
 
-int		validate(int fd)
+int		validate(int fd, size_t i, size_t j)
 {
-	size_t	i;
 	char	*nl;
-	t_uc	st[36];
-	size_t	j;
 
 	i = -1;
 	while (++i < 36)
-		st[i] = 0;
+		g_st[i] = 0;
 	g_cell_count = -1;
 	g_glob = (t_huyna*)malloc(sizeof(t_huyna) * 28);
 	while (++g_cell_count < 26)
 	{
 		fict2(fd, &nl);
 		globin();
-		fict1(st);
-		if (get_next_line(fd, &nl) > 0 && (ft_strlen(nl) != 0 || !val(st)))
-			error();
+		fict1();
+		if (get_next_line(fd, &nl) > 0)
+		{
+			if (ft_strlen(nl) != 0 || !val())
+				error();
+		}
 		else
 		{
-			if (!val(st))
+			if (!val())
 				error();
 			break ;
 		}
