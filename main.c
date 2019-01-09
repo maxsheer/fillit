@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:41:03 by wclayton          #+#    #+#             */
-/*   Updated: 2019/01/05 22:54:20 by dgrady           ###   ########.fr       */
+/*   Updated: 2019/01/09 20:15:38 by dgrady           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	char	**map;
+	char	*nl;
 
+	nl = NULL;
 	if (argc != 2 || ((fd = open(argv[1], O_RDONLY)) < 0))
 		return (usage());
-	if (!validate(fd, 0))
+	if (!validate(fd, 0, nl))
 	{
 		write(2, "error\n", 6);
 		return (0);

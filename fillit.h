@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 20:43:38 by wclayton          #+#    #+#             */
-/*   Updated: 2019/01/05 22:54:36 by dgrady           ###   ########.fr       */
+/*   Updated: 2019/01/09 20:14:25 by dgrady           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <string.h>
 # include "./libft/libft.h"
 
-# define ZCHECK(x) if (!x) return (-1);
-# define MCHECK(x) if (x < 0) write(1, "govna poel\n", 11); exit;
+# define Z(x) if (!x) write(1, "error\n", 6); exit;
+# define MCHECK(x) if (x < 0) write(1, "error\n", 6); exit;
 
 typedef unsigned char		t_uc;
 typedef unsigned short		t_uz;
@@ -41,7 +41,7 @@ int							g_i;
 t_uc						g_st[36];
 
 int							usage(void);
-int							validate(int fd, size_t i);
+int							validate(int fd, size_t i, char *nl);
 void						cut(void);
 void						hw(void);
 void						algo(short size, char **map, short index);

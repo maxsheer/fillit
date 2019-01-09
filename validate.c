@@ -6,7 +6,7 @@
 /*   By: wclayton <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 21:11:28 by wclayton          #+#    #+#             */
-/*   Updated: 2019/01/05 22:38:28 by dgrady           ###   ########.fr       */
+/*   Updated: 2019/01/09 20:14:04 by dgrady           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	globin(void)
 	int i;
 
 	i = -1;
-	g_glob[g_cell_count].store = (t_uc**)malloc(sizeof(t_uc*) * 4);
+	Z((g_glob[g_cell_count].store = (t_uc**)malloc(sizeof(t_uc*) * 4)));
 	while (++i < 4)
-		g_glob[g_cell_count].store[i] = (t_uc*)malloc(sizeof(t_uc) * 4);
+		Z((g_glob[g_cell_count].store[i] = (t_uc*)malloc(sizeof(t_uc) * 4)));
 	i = -1;
 	while (++i < 16)
 		g_glob[g_cell_count].store[i / 4][i % 4] = 0;
@@ -92,15 +92,13 @@ void	fict2(int fd, char **nl)
 	}
 }
 
-int		validate(int fd, size_t i)
+int		validate(int fd, size_t i, char *nl)
 {
-	char	*nl;
-
 	i = -1;
 	while (++i < 36)
 		g_st[i] = 0;
 	g_cell_count = -1;
-	g_glob = (t_huyna*)malloc(sizeof(t_huyna) * 28);
+	Z((g_glob = (t_huyna*)malloc(sizeof(t_huyna) * 28)));
 	while (++g_cell_count < 26)
 	{
 		fict2(fd, &nl);
@@ -117,6 +115,7 @@ int		validate(int fd, size_t i)
 				error();
 			break ;
 		}
+		free(nl);
 	}
 	return (1);
 }

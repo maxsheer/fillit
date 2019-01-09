@@ -6,7 +6,7 @@
 /*   By: dgrady <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 22:04:19 by dgrady            #+#    #+#             */
-/*   Updated: 2018/12/27 23:43:51 by wclayton         ###   ########.fr       */
+/*   Updated: 2019/01/09 20:10:43 by dgrady           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ char	**create_map(void)
 	int		i;
 
 	i = -1;
-	map = (char**)malloc(sizeof(char*) * 18);
+	Z((map = (char**)malloc(sizeof(char*) * 18)));
 	while (++i < 18)
-		map[i] = ft_strnew(18);
+		Z((map[i] = ft_strnew(18)));
 	return (map);
 }
 
