@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	int		fd;
 	char	**map;
 	char	*nl;
+	int		j;
 
 	nl = NULL;
 	if (argc != 2 || ((fd = open(argv[1], O_RDONLY)) < 0))
@@ -30,5 +31,9 @@ int	main(int argc, char **argv)
 	hw();
 	map = create_map();
 	algo(find_size(g_cell_count), map, 0);
+	j = -1;
+	while (++j < 19)
+		free(map[j]);
+	free(map);
 	return (0);
 }

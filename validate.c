@@ -89,6 +89,7 @@ void	fict2(int fd, char **nl)
 			else
 				error();
 		}
+		free(*nl);
 	}
 }
 
@@ -104,6 +105,7 @@ int		validate(int fd, size_t i, char *nl)
 		fict2(fd, &nl);
 		globin();
 		fict1();
+		free(nl);
 		if (get_next_line(fd, &nl) > 0)
 		{
 			if (ft_strlen(nl) != 0 || !val())
