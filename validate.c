@@ -115,6 +115,7 @@ int		validate(int fd, size_t i, char *nl)
 		{
 			if (!val())
 				error();
+			free(nl);
 			break ;
 		}
 		free(nl);

@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 		write(2, "error\n", 6);
 		return (0);
 	}
+	free(nl);
 	cut();
 	hw();
 	map = create_map();
